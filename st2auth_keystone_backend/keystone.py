@@ -95,11 +95,11 @@ class KeystoneAuthenticationBackend(object):
                         "password"
                     ],
                     "password": {
-                        "domain": {
-                            "id": "default"
-                        },
                         "user": {
                             "name": username,
+                            "domain": {
+                                "id": "default"
+                            },
                             "password": password
                         }
                     }

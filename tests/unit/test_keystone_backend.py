@@ -54,5 +54,20 @@ class KeystoneAuthenticationBackendTestCase(unittest2.TestCase):
         self.assertFalse(backendv2.authenticate('bad', 'password'))
         self.assertFalse(backendv3.authenticate('bad', 'password'))
 
+    def test_get_v3_creds(self):
+        backendv3 = KeystoneAuthenticationBackend(keystone_url="http://fake.com:5000",
+                                                  keystone_version=3)
+        creds = backendv3._get_v3_creds('username', 'password')
+
+        self.assertIn('password', creds['auth']['identity']['methods'])
+        self.assertIn('password', creds['auth']['identity'])
+        self.assertIn('user', creds['auth']['identity']['password'])
+        self.assertIn('name', creds['auth']['identity']['password']['user'])
+        self.assertIn('password', creds['auth']['identity']['password']['user'])
+        self.assertIn('domain', creds['auth']['identity']['password']['user'])
+
+        self.assertEqual('username', creds['auth']['identity']['password']['user']['name'])
+        self.assertEqual('password', creds['auth']['identity']['password']['user']['password'])
+
 if __name__ == '__main__':
     sys.exit(unittest2.main())
