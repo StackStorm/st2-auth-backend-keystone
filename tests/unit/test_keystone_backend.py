@@ -14,7 +14,7 @@
 # limitations under the License.
 
 import sys
-import httplib
+import http.client
 
 import unittest
 import mock
@@ -26,9 +26,9 @@ from st2auth_keystone_backend.keystone import KeystoneAuthenticationBackend
 class KeystoneAuthenticationBackendTestCase(unittest.TestCase):
     def _mock_keystone(self, *args, **kwargs):
         return_codes = {
-            'goodv2': httplib.OK,
-            'goodv3': httplib.CREATED,
-            'bad': httplib.UNAUTHORIZED
+            'goodv2': http.client.OK,
+            'goodv3': http.client.CREATED,
+            'bad': http.client.UNAUTHORIZED
         }
         json = kwargs.get('json')
         res = Response()

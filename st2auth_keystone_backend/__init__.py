@@ -13,7 +13,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from keystone import KeystoneAuthenticationBackend
+from .keystone import KeystoneAuthenticationBackend
 
 __all__ = [
     'KeystoneAuthenticationBackend'
