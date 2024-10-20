@@ -18,8 +18,7 @@ import httplib
 
 import requests
 
-from six.moves.urllib.parse import urlparse
-from six.moves.urllib.parse import urljoin
+from urllib.parse import urljoin, urlparse
 
 __all__ = [
     'KeystoneAuthenticationBackend'
