@@ -14,12 +14,11 @@
 # limitations under the License.
 
 import logging
-import httplib
+import http.client
 
 import requests
 
-from six.moves.urllib.parse import urlparse
-from six.moves.urllib.parse import urljoin
+from urllib.parse import urljoin, urlparse
 
 __all__ = [
     'KeystoneAuthenticationBackend'
@@ -66,7 +65,7 @@ class KeystoneAuthenticationBackend(object):
             LOG.debug('Authentication for user "{}" failed: {}'.format(username, str(e)))
             return False
 
-        if login.status_code in [httplib.OK, httplib.CREATED]:
+        if login.status_code in [http.client.OK, http.client.CREATED]:
             LOG.debug('Authentication for user "{}" successful'.format(username))
             return True
         else:
