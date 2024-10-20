@@ -16,14 +16,14 @@
 import sys
 import httplib
 
-import unittest2
+import unittest
 import mock
 from requests.models import Response
 
 from st2auth_keystone_backend.keystone import KeystoneAuthenticationBackend
 
 
-class KeystoneAuthenticationBackendTestCase(unittest2.TestCase):
+class KeystoneAuthenticationBackendTestCase(unittest.TestCase):
     def _mock_keystone(self, *args, **kwargs):
         return_codes = {
             'goodv2': httplib.OK,
@@ -70,4 +70,4 @@ class KeystoneAuthenticationBackendTestCase(unittest2.TestCase):
         self.assertEqual('password', creds['auth']['identity']['password']['user']['password'])
 
 if __name__ == '__main__':
-    sys.exit(unittest2.main())
+    sys.exit(unittest.main())
